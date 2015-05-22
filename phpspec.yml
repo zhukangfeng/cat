@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Cat
+        psr4_prefix: Cat
+        src_path: app
