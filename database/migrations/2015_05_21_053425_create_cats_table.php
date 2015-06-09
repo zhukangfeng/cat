@@ -25,8 +25,8 @@ class CreateCatsTable extends Migration {
 			$table->integer('updated_user_id')->unsigned()->nullable();
 			$table->timestamps();
 			$table->foreign('breed_id')->references('id')->on('breeds');
-			// $table->foreign('created_user_id')-references('id')->on('users');
-			// $table->foreign('updated_user_id')-references('id')->on('users');
+			$table->foreign('created_user_id')->references('id')->on('users');
+			$table->foreign('updated_user_id')->references('id')->on('users');
 		});
 	}
 

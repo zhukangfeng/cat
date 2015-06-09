@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function() {
-    return redirect('cats');
+    return view('index');
 });
 
 Route::get('/about/', function() {
@@ -21,10 +21,50 @@ Route::get('/about/', function() {
 
 Route::group(['prefix' => 'breeds'], function() {
     Route::get('/', function() {
-        return view('breeds.index');
+        $breeds = Cat\Breed::all();
+        return view('breeds.index')->with('breeds', $breeds);
+    });
+    Route::post('/', function() {
+        $breed = Cat\Breed::create(Input::all());
+        if ($breed) {
+            return redirect("breeds/")->withSuccess('Breed has been created.');
+        } else {
+            return redirect("breeds/create")->withError('There are some errors, please try again.');
+        }
     });
     Route::get('/create', function() {
         return view('breeds.create');
+    });
+});
+
+Route::group(['prefix' => 'breed'], function() {
+    Route::get('/', function() {
+        return redirect('/breeds');
+    });
+    Route::get('/{id}', function($id) {
+        $breed = Cat\breed::find($id);
+        return view('breeds.show')->with('breed', $breed);
+    })->where('id', '[0-9]*');
+    Route::get('/{id}/edit', function($id) {
+        $breed = Cat\Breed::find($id);
+        return view('breeds.edit')->with('breed', $breed);
+    });
+    Route::get('/{id}/delete', function($id) {
+        $breed = Cat\Breed::find($id);
+        if ($breed->delete()) {
+            return redirect('breeds/')->withSuccess('Breed has been deleted.');
+        } else {
+            return redirect('breed/' . $id)->withError('There are some errors, please try again.');
+        }
+        return view('breeds.edit')->with('breed', $breed);
+    });
+    Route::put('/{id}', function($id) {
+        $breed = Cat\Breed::find($id);
+        if ($breed->update(Input::all())) {
+            return redirect('breed/' . $id)->withSuccess('Breed has been updated.');
+        } else {
+            return redirect('breed/' . $id . '/edit')->withError('There are some errors, please try again.');
+        }
     });
 });
 
@@ -57,12 +97,14 @@ Route::put('/cat/{id}', function($id) {
         return redirect('/cat/' . $id . "/edit")->withError('There are some errors, please try again.');   
     }
 })->where('id', '[0-9]*');
+
 Route::get('/cat/{id}/delete', function($id) {
     $cat = Cat\Cat::find($id);
     if ($cat->delete()) {
         return redirect('/cats/')->withSuccess('Cat has been deleted.');
     }
 })->where('id', '[0-9]*');
+
 Route::get('/cat/{id}/edit', function($id) {
     $cat = Cat\Cat::find($id);
     return view('cats.edit')->with('cat', $cat);

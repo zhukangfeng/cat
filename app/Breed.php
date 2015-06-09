@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 Class Breed extends Model {
-    public $timestamps = false;
+    protected $fillable = ['name', 'attribute'];
 
     public function cats() {
         return $this->hasMany('Cat\Cat');
