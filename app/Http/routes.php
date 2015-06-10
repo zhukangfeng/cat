@@ -110,7 +110,14 @@ Route::get('/cat/{id}/edit', function($id) {
     return view('cats.edit')->with('cat', $cat);
 })->where('id', '[0-9]*');
 
+
+Route::get('login', 'Auth\AuthController@index');
+
 Route::get('home', 'HomeController@index');
+
+
+
+Route::get('regist', 'Auth\AuthController@create');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

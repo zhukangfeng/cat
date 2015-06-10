@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PetRelation extends Migration {
+class CreatePetRelationsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class PetRelation extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('pet_relation', function(Blueprint $table)
+		Schema::create('pet_relations', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('owner_id')->unsigned()->nullable();
@@ -34,7 +34,7 @@ class PetRelation extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pet_relation');
+		Schema::drop('pet_relations');
 	}
 
 }

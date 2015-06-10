@@ -1,4 +1,6 @@
 <?php namespace Cat\Http\Controllers;
+use Auth;
+use Cat\Cat;
 
 class HomeController extends Controller {
 
@@ -30,7 +32,11 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		$user_id = Auth::id();
+		$cats = Cat::all();
+		return $cats;
+		// return $user_id;
+		// return view('home')->with('cats' => Cat::all());
 	}
 
 }
