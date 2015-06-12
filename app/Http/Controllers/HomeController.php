@@ -33,10 +33,12 @@ class HomeController extends Controller {
 	public function index()
 	{
 		$user_id = Auth::id();
-		$cats = Cat::all();
-		return $cats;
-		// return $user_id;
-		// return view('home')->with('cats' => Cat::all());
+		$cats = Cat::getPet($user_id);
+		// $cats = Cat::where('created_user_id', '=', $user_id);
+
+		// return var_dump($cats);
+
+		return view('home')->with('cats', $cats);
 	}
 
 }

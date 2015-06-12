@@ -50,10 +50,10 @@ return [
 
 		's3' => [
 			'driver' => 's3',
-			'key'    => 'your-key',
-			'secret' => 'your-secret',
+			'key'    => 'AKIAI23IOMQCA27PVYSQ',
+			'secret' => 'ZBuGeREa+IdSRI9OTasW+DmB/oWrgOZFJqKvosnU',
 			'region' => 'your-region',
-			'bucket' => 'your-bucket',
+			'bucket' => 'adflow2-sandbox',
 		],
 
 		'rackspace' => [

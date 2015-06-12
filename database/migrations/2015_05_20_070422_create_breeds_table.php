@@ -12,7 +12,7 @@ class CreateBreedsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('breeds', function(Blueprint $table)
+		Schema::create('cats_breeds', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name');
@@ -22,6 +22,7 @@ class CreateBreedsTable extends Migration {
 			$table->timestamps();
 			$table->foreign('created_user_id')->references('id')->on('users');
 			$table->foreign('updated_user_id')->references('id')->on('users');
+			$table->softDeletes();
 		});
 	}
 
@@ -32,7 +33,7 @@ class CreateBreedsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('breeds');
+		Schema::drop('cats_breeds');
 	}
 
 }

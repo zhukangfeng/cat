@@ -1,17 +1,17 @@
 <div class="form-group">
-    {!! Form::label('icon', 'Icon') !!}
-    <div class="form-controls">
-        {!! Form::file('icon', null, ['class' => 'form-control']) !!}
-    </div>
-</div>
-<div class="form-group">
     {!! Form::label('name', 'Name') !!}
     <div class="form-controls">
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('date_of_birth', "Date of Birth") !!}
+    {!! Form::label('begin_at', "Own") !!}
+    <div class="form-controls">
+        {!! Form::date('date_of_birth', null, ['class' => 'form-control span2']) !!}
+    </div>
+</div>
+<div class="form-group">
+    {!! Form::label('end_at', "Date of Birth") !!}
     <div class="form-controls">
         {!! Form::date('date_of_birth', null, ['class' => 'form-control span2']) !!}
     </div>
@@ -25,12 +25,7 @@
         {!! Form::label('female', "Female") !!}
     </div>
 </div>
-<div class="form-group">
-    {!! Form::label('price', "Price") !!}
-    <div class="form-controls">
-        {!! Form::number('price', null, ['class' => 'form-control', 'min' => '0']) !!}
-    </div>
-</div>
+
 <div class="form-group">
     {!! Form::label('attribute', "Attribute") !!}
     <div class="form-controls">
@@ -38,9 +33,9 @@
     </div>
 </div>
 <div class="form-group">
-    {!! Form::label('breed_id', "Breed") !!}
+    {!! Form::label('cat_id', "Cat") !!}
     <div class="form-controls">
-        {!! Form::select('breed_id', $breeds, null, ['class' => 'form-control']) !!}
+        {!! Form::select('cat_id', $cats, null, ['class' => 'form-control']) !!}
     </div>
 </div>
-{!! Form::submit('Save Cat', ['class' => 'btn btn-primary center-block']) !!}
+{!! Form::submit('Save Breed', ['class' => 'btn btn-primary center-block']) !!}

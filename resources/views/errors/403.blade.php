@@ -34,7 +34,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Page is not found.</div>
+                <div class="title">You have No permission.</div>
             </div>
         </div>
     </body>

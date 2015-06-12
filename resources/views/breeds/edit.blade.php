@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('header')
-    <h2>Create a new breed</h2>
+    <h2>Edit a breed</h2>
 @stop
 
 @section('content')

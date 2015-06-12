@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
             ['id' => '8', 'name' => 'user8', 'email' => '8@8.com', 'password' => '$2y$10$c8zh6gVb2JAYLpVsgtLV0OeMVyN6/tuOFKkCfLJLD1YcZAoqN5vzC'],
             ['id' => '9', 'name' => 'user9', 'email' => '9@9.com', 'password' => '$2y$10$c8zh6gVb2JAYLpVsgtLV0OeMVyN6/tuOFKkCfLJLD1YcZAoqN5vzC'],
             ['id' => '10', 'name' => 'user10', 'email' => '10@10.com', 'password' => '$2y$10$c8zh6gVb2JAYLpVsgtLV0OeMVyN6/tuOFKkCfLJLD1YcZAoqN5vzC'],
+            ['id' => '11', 'name' => 'shu', 'email' => 'shu@c-m.co.jp', 'password' => '$2y$10$voxt.lntgnf.QdYfIt0mvuTdAa7ves/TPf1IJgriJpjkzR5XvQrpO'],
         ]);
     }
 }

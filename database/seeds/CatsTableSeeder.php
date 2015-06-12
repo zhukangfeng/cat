@@ -21,6 +21,9 @@ class CatsTableSeeder extends Seeder
             ['id' => 8, 'name' => 'pet Akida4', 'date_of_birth' => '1994/03/22', 'sex' => 'male', 'price' => 2, 'breed_id' => '8', 'created_user_id' => '5'],
             ['id' => 9, 'name' => 'pet Akida5', 'date_of_birth' => '1994/03/22', 'sex' => 'male', 'price' => 2, 'breed_id' => '9', 'created_user_id' => '5'],
             ['id' => 10, 'name' => 'pet Akida6', 'date_of_birth' => '1994/03/22', 'sex' => 'male', 'price' => 2, 'breed_id' => '10', 'created_user_id' => '5'],
+            ['id' => 11, 'name' => 'shu1', 'date_of_birth' => '1994/03/22', 'sex' => 'male', 'price' => 2, 'breed_id' => '10', 'created_user_id' => '5'],
+            ['id' => 12, 'name' => 'shu2', 'date_of_birth' => '1994/03/22', 'sex' => 'male', 'price' => 2, 'breed_id' => '11', 'created_user_id' => '5'],
+            ['id' => 13, 'name' => 'shu3', 'date_of_birth' => '1994/03/22', 'sex' => 'male', 'price' => 2, 'breed_id' => '13', 'created_user_id' => '5'],
         ]);
     }
 }

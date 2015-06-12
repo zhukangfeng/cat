@@ -70,10 +70,31 @@ Route::group(['prefix' => 'breed'], function() {
 
 Route::get('/cats', function() {
     $cats = Cat\Cat::all();
-     return view('cats.index')->with('cats', $cats);
+
+    // foreach ($cats as $key => $cat) {
+    //     if (!($cat->breed)) {
+    //         $cat->breed = ['name' => 'unkonw', 'id' => '0'];
+    //         $cats[$key] = $cat;
+    //         // $cat->breed->name   = 'Unknow Breed';
+    //         // $cat->breed->id     = '0';
+    //         // return $cat;
+    //     }
+    // }
+    return view('cats.index')->with('cats', $cats);
 });
 Route::post('/cats', function() {
-    $cat = Cat\Cat::create(Input::all());
+    $input = Input::all();
+    $input['created_user_id'] = Auth::id();
+    $cat = Cat\Cat::create($input);
+
+    if (Request::has('icon')) {
+        $file = Request::file('icon');
+        $uploaded_file->file_cd = Config::get('db_const.DB_FILE_FILE_CD_CAT_ICON_CODE');
+        return 'yes';
+    } else {
+        return 'no';
+    }
+
     if ($cat) {
         return redirect('cat/' . $cat->id)->withSuccess('Cat has been created.');
     } else {
@@ -100,7 +121,7 @@ Route::put('/cat/{id}', function($id) {
 
 Route::get('/cat/{id}/delete', function($id) {
     $cat = Cat\Cat::find($id);
-    if ($cat->delete()) {
+    if ($cat->softdeletes()) {
         return redirect('/cats/')->withSuccess('Cat has been deleted.');
     }
 })->where('id', '[0-9]*');
@@ -113,7 +134,6 @@ Route::get('/cat/{id}/edit', function($id) {
 
 Route::get('login', 'Auth\AuthController@index');
 
-Route::get('home', 'HomeController@index');
 
 
 
@@ -123,3 +143,12 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('info', 'Auth\ProfileController@index');
+    Route::get('home', 'HomeController@index');
+    Route::group(['prefix' => 'pet'], function() {
+        Route::get('/{id}', 'Pet\PetController@show');
+    });
+    Route::get('pets', 'Pet\PetController@index');
+});

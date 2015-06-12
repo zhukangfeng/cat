@@ -23,10 +23,14 @@ class CreateCatsTable extends Migration {
 			$table->integer('breed_id')->unsigned()->nullable();
 			$table->integer('created_user_id')->unsigned()->nullable();
 			$table->integer('updated_user_id')->unsigned()->nullable();
-			$table->timestamps();
-			$table->foreign('breed_id')->references('id')->on('breeds');
+			$table->boolean('is_public')->default(true)->comment('false:private, true:public');
+			$table->boolean('is_sell')->default(false)->comment('false:unsell, ture:sell');
+			$table->foreign('breed_id')->references('id')->on('cats_breeds');
 			$table->foreign('created_user_id')->references('id')->on('users');
 			$table->foreign('updated_user_id')->references('id')->on('users');
+			$table->timestamps();
+			$table->softDeletes();
+
 		});
 	}
 

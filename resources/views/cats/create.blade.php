@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('header')
-    <a href="{{ url('/') }}">Back to overview</a>
     <h2>Add a new cat</h2>
 @stop
 
