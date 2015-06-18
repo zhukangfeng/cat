@@ -7,14 +7,14 @@ Class Cat extends Model {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     protected $table = 'cats';
-    protected $fillable = ['name', 'date_of_birth', 'sex', 'price', 'attribute', 'breed_id', 'created_user_id'];
+    protected $fillable = ['name', 'date_of_birth', 'sex', 'price', 'attribute', 'breed_id', 'created_user_id', 'updated_user_id'];
 
     public function breed() {
         return $this->belongsTo('Cat\Breed');
     }
 
     public function owner() {
-        return $this->belongsTo('Cat\User');
+        return User::find($this->created_user_id);
     }
 
     public static function getPet($user_id) {

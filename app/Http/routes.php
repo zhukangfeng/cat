@@ -68,68 +68,84 @@ Route::group(['prefix' => 'breed'], function() {
     });
 });
 
-Route::get('/cats', function() {
-    $cats = Cat\Cat::all();
 
-    // foreach ($cats as $key => $cat) {
-    //     if (!($cat->breed)) {
-    //         $cat->breed = ['name' => 'unkonw', 'id' => '0'];
-    //         $cats[$key] = $cat;
-    //         // $cat->breed->name   = 'Unknow Breed';
-    //         // $cat->breed->id     = '0';
-    //         // return $cat;
-    //     }
-    // }
-    return view('cats.index')->with('cats', $cats);
+Route::resource('cat', 'Cat\CatController');
+Route::resource('file', 'FileController');
+
+Route::group(['prefix' => 'file'], function() {
+    Route::get('/download/{file_id}/', "FileController@downloadByFileId")
+        ->where('file_id', '[0-9]*')
+        ->where('resource_id', '[0-9]*');
+    Route::get('/download/{file_cd}/{resource_id}', "FileController@download")
+        ->where('file_cd', '[0-9]*')
+        ->where('resource_id', '[0-9]*');
 });
-Route::post('/cats', function() {
-    $input = Input::all();
-    $input['created_user_id'] = Auth::id();
-    $cat = Cat\Cat::create($input);
 
-    if (Request::has('icon')) {
-        $file = Request::file('icon');
-        $uploaded_file->file_cd = Config::get('db_const.DB_FILE_FILE_CD_CAT_ICON_CODE');
-        return 'yes';
-    } else {
-        return 'no';
-    }
 
-    if ($cat) {
-        return redirect('cat/' . $cat->id)->withSuccess('Cat has been created.');
-    } else {
-        return redirect('cats/create')->withError('There are some errors, please try again.');
-    }
+
+// Route::get('/cats', function() {
+//     $cats = Cat\Cat::all();
+
+//     // foreach ($cats as $key => $cat) {
+//     //     if (!($cat->breed)) {
+//     //         $cat->breed = ['name' => 'unkonw', 'id' => '0'];
+//     //         $cats[$key] = $cat;
+//     //         // $cat->breed->name   = 'Unknow Breed';
+//     //         // $cat->breed->id     = '0';
+//     //         // return $cat;
+//     //     }
+//     // }
+//     return view('cats.index')->with('cats', $cats);
+// });
+// Route::post('/cats', function() {
+//     $input = Input::all();
+//     $input['created_user_id'] = Auth::id();
+//     $cat = Cat\Cat::create($input);
+
+//     if (Request::has('icon')) {
+//         $file = Request::file('icon');
+//         $uploaded_file->file_cd = Config::get('db_const.DB_FILE_FILE_CD_CAT_ICON_CODE');
+//         return 'yes';
+
+//     } else {
+//         return 'no';
+//     }
+
+//     if ($cat) {
+//         return redirect('cat/' . $cat->id)->withSuccess('Cat has been created.');
+//     } else {
+//         return redirect('cats/create')->withError('There are some errors, please try again.');
+//     }
     
-    return view('cats.create');
-});
-Route::get('/cats/create', function() {
-    return view('cats.create');
-});
-Route::get('/cat/{id}', function($id) {
-    $cat = Cat\Cat::find($id);
-    return view('cats.show')->with('cat', $cat);
-})->where('id', '[0-9]*');
-Route::put('/cat/{id}', function($id) {
-    $cat = Cat\Cat::find($id);
-    if ($cat->update(Input::all())) {
-        return redirect('/cat/' . $id)->withSuccess('Cat has been updated.');   
-    } else {
-        return redirect('/cat/' . $id . "/edit")->withError('There are some errors, please try again.');   
-    }
-})->where('id', '[0-9]*');
+//     return view('cats.create');
+// });
+// Route::get('/cats/create', function() {
+//     return view('cats.create');
+// });
+// Route::get('/cat/{id}', function($id) {
+//     $cat = Cat\Cat::find($id);
+//     return view('cats.show')->with('cat', $cat);
+// })->where('id', '[0-9]*');
+// Route::put('/cat/{id}', function($id) {
+//     $cat = Cat\Cat::find($id);
+//     if ($cat->update(Input::all())) {
+//         return redirect('/cat/' . $id)->withSuccess('Cat has been updated.');   
+//     } else {
+//         return redirect('/cat/' . $id . "/edit")->withError('There are some errors, please try again.');   
+//     }
+// })->where('id', '[0-9]*');
 
-Route::get('/cat/{id}/delete', function($id) {
-    $cat = Cat\Cat::find($id);
-    if ($cat->softdeletes()) {
-        return redirect('/cats/')->withSuccess('Cat has been deleted.');
-    }
-})->where('id', '[0-9]*');
+// Route::get('/cat/{id}/delete', function($id) {
+//     $cat = Cat\Cat::find($id);
+//     if ($cat->softdeletes()) {
+//         return redirect('/cats/')->withSuccess('Cat has been deleted.');
+//     }
+// })->where('id', '[0-9]*');
 
-Route::get('/cat/{id}/edit', function($id) {
-    $cat = Cat\Cat::find($id);
-    return view('cats.edit')->with('cat', $cat);
-})->where('id', '[0-9]*');
+// Route::get('/cat/{id}/edit', function($id) {
+//     $cat = Cat\Cat::find($id);
+//     return view('cats.edit')->with('cat', $cat);
+// })->where('id', '[0-9]*');
 
 
 Route::get('login', 'Auth\AuthController@index');

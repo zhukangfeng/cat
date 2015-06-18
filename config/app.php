@@ -139,6 +139,7 @@ return [
 		* 20150521 17:52 add
 		*/
 		'Collective\Html\HtmlServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 		
 		/*
 		 * Application Service Providers...

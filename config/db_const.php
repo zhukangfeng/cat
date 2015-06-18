@@ -34,4 +34,8 @@ return [
 
     ],
 
+    'DB_USERS_USER_TYPE_COMMON'             => 0,
+    'DB_USERS_USER_TYPE_MANAGE'             => 1,
+    'DB_USERS_USER_TYPE_ADMIN'              => 2,
+
 ];

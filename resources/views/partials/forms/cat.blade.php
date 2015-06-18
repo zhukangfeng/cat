@@ -1,4 +1,11 @@
 <div class="form-group">
+    @if (isset($cat) && $cat->icons)
+        <div class="icon">
+            @foreach($cat->icons as $key => $icon)
+                <img src="{{ url('/file/download/' . $icon->id) }}">
+            @endforeach
+        </div>
+    @endif
     {!! Form::label('icon', 'Icon') !!}
     <div class="form-controls">
         {!! Form::file('icon', null, ['class' => 'form-control']) !!}

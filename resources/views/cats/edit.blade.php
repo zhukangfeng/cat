@@ -4,7 +4,7 @@
 @stop
 
 @section('content')
-    {!! Form::model($cat, ['url' => '/cat/'. $cat->id, 'method' => 'put']) !!}
+    {!! Form::model($cat, ['url' => '/cat/'. $cat->id, 'method' => 'put', 'enctype' => 'multipart/form-data']) !!}
         @include('partials.forms.cat')
     {!! Form::close() !!}
 @stop

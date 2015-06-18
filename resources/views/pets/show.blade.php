@@ -3,10 +3,12 @@
     <h2>
         {{ $pet->pet_type_name }} - {{ $pet->petInfo()[0]->name }}
     </h2>
-    @if ($pet->owner_id === Auth::id())
-        <a href="{{ url('diary/' . $pet->id) }}">Diary</a>
-        <a href="{{ url('pet/' . $pet->id . '/edit') }}">Edit</a>
-        <a href="{{ url('pet/' . $pet->id . '/delete') }}">Delete</a>
+    @if (!Auth::guest())
+        @if ($pet->owner_id === Auth::id() || Auth::user()->user_type === Config::get('db_const.DB_USERS_USER_TYPE_ADMIN'))
+            <a href="{{ url('diary/' . $pet->id) }}">Diary</a>
+            <a href="{{ url('pet/' . $pet->id . '/edit') }}">Edit</a>
+            <a href="{{ url('pet/' . $pet->id . '/delete') }}">Delete</a>
+        @endif
     @endif
     <p>Last Edited: {{ $pet->updated_at->diffForHumans() }}</p>
 @stop
