@@ -56,7 +56,7 @@ class PetController extends Controller {
 		//
 		$pet = PetRelations::find($id);
 		if ($pet->owner_id !== Auth::id() && !$pet->is_public) {
-		 	return Response::view('errors/403', array(), 403);
+		 	abort(403);
 		}
 		// return PetRelations::find($id);
 		// print_r(Config::get('db_const.DB_PET_STATUS_VALUE')[1]);

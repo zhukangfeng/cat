@@ -2,8 +2,10 @@
 @section('header')
     <h2>
         All @if (isset($breed)) {{$breed->name}} @endif Cats
-        <a href="{{ url('cats/create') }}" class="btn btn-primary pull-right">Add a new cat</a>&nbsp;&nbsp;
-        <a href="{{ url('breeds/create') }}" class="btn btn-primary pull-right">Add a new breed</a>
+        @if (!Auth::guest())
+            <a href="{{ url('cat/create') }}" class="btn btn-primary pull-right">Add a new cat</a>&nbsp;&nbsp;
+            <a href="{{ url('breeds/create') }}" class="btn btn-primary pull-right">Add a new breed</a>
+        @endif
     </h2>
 @stop
 @section('content')

@@ -37,7 +37,7 @@
                     <li><a href="{{ url('/home') }}">Home</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/cats') }}">Cats</a></li>
+                    <li><a href="{{ url('/cat') }}">Cats</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/breeds') }}">Breeds</a></li>
@@ -108,5 +108,10 @@
     </div>
     
 </footer>
-
+<script type="text/javascript">
+    @yield('javascript') 
+</script>
+<style type="text/css">
+    @yield('css')
+</style>
 </html>

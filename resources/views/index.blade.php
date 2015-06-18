@@ -11,7 +11,7 @@
 
                 <div class="panel-body">
                     <div>
-                        <a href="{{ url('cats') }}" class="btn">Cats</a>
+                        <a href="{{ url('cat') }}" class="btn">Cats</a>
                         <a href="{{ url('breeds') }}" class="btn">Breeds</a>
                     </div>
                 </div>

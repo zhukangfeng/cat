@@ -2,7 +2,7 @@
 @section('header')
     <h2>
         All My Cats
-        <a href="{{ url('cats/create') }}" class="btn btn-primary pull-right">Add a new cat</a>&nbsp;&nbsp;
+        <a href="{{ url('cat/create') }}" class="btn btn-primary pull-right">Add a new cat</a>&nbsp;&nbsp;
         <a href="{{ url('breeds/create') }}" class="btn btn-primary pull-right">Add a new breed</a>
     </h2>
 @stop
