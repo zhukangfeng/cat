@@ -160,11 +160,11 @@ class CatController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
 		//
 		// return 1;
-		$request = new Request();
+		// $request = new Request();
 		$cat = $id;
 		if (
 			Auth::guest() 
@@ -173,23 +173,18 @@ class CatController extends Controller {
 			abort(403);
 		}
 		$data = $request->input();
-		$data['updated_user_id'] = Auth::id();
-
     	$validator = Validator::make(
 			$data,
 		    ['name' => 'required|min:3', 'breed_id' => 'required']
 		);
-		return $request;
-    	return var_dump( $request->hasFile('icon'));
-    	if ($request->hasFile('icon')) {
-	        $file = $request->file('icon');
-	        return $file;
+		$file = Input::file('icon');
+    	if ($file) {
 	    	$icon_validator = ['image/jpeg', 'image/bmp', 'image/png', 'image/gif'];
 	    	if (!in_array($file->getClientMimeType(), $icon_validator)) {
-	    		return redirect('cat/create')->with('cat', $data)->withError('The icon must be a photo or gif.');
+	    		return redirect('cat/' . $cat->id)->with('cat', $data)->withError('The icon must be a photo or gif.');
 	    	}
 	    	if ($validator->fails()) {
-	    		return redirect('cat/create')->with('cat', $data)->withError('The icon must be a photo or gif.');
+	    		return redirect('cat/' . $cat->id)->with('cat', $data)->withError('name must has more than 3 characters.');
 	    	}
 
 	        if (file_exists($file)) {

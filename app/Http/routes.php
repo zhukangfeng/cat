@@ -42,7 +42,7 @@ Route::group(['prefix' => 'breed'], function() {
         return redirect('/breeds');
     });
     Route::get('/{id}', function($id) {
-        $breed = Cat\breed::find($id);
+        $breed = Cat\Breed::find($id);
         return view('breeds.show')->with('breed', $breed);
     })->where('id', '[0-9]*');
     Route::get('/{id}/edit', function($id) {
