@@ -41,10 +41,6 @@ Route::group(['prefix' => 'breed'], function() {
     Route::get('/', function() {
         return redirect('/breeds');
     });
-    Route::get('/{id}', function($id) {
-        $breed = Cat\Breed::find($id);
-        return view('breeds.show')->with('breed', $breed);
-    })->where('id', '[0-9]*');
     Route::get('/{id}/edit', function($id) {
         $breed = Cat\Breed::find($id);
         return view('breeds.edit')->with('breed', $breed);
@@ -61,11 +57,18 @@ Route::group(['prefix' => 'breed'], function() {
     Route::put('/{id}', function($id) {
         $breed = Cat\Breed::find($id);
         if ($breed->update(Input::all())) {
-            return redirect('breed/' . $id)->withSuccess('Breed has been updated.');
+            return redirect('breed/' . Crypt::encrypt($id))->withSuccess('Breed has been updated.');
         } else {
-            return redirect('breed/' . $id . '/edit')->withError('There are some errors, please try again.');
+            return redirect('breed/' . Crypt::encrypt($id) . '/edit')->withError('There are some errors, please try again.');
         }
-    });
+    }); 
+    Route::get('/{encode}', function($encode) {
+        // return $encode;
+        $id =  Crypt::decrypt($encode);
+        $breed = Cat\Breed::find($id);
+        return view('breeds.show')->with('breed', $breed);
+    })->where('id', '[0-9]*');
+   
 });
 
 

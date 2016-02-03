@@ -78,7 +78,7 @@ return [
 	|
 	*/
 
-	'key' => env('APP_KEY', 'SomeRandomString'),
+	'key' => env('APP_KEY', 'x9hfUHIHhWpCeVsjUIc9Nd3fmeFzEOcA'),
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -148,6 +148,8 @@ return [
 		'Cat\Providers\ConfigServiceProvider',
 		'Cat\Providers\EventServiceProvider',
 		'Cat\Providers\RouteServiceProvider',
+
+		'Barryvdh\Debugbar\ServiceProvider',
 
 		
 

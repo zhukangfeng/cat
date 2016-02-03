@@ -20,7 +20,7 @@
                 @endif
                     <div class="pet-info">
                         <a href="{{ url('pet/' . $pet->id) }}"><strong>{{ $pet->petInfo()[0]->name }}</strong></a> - 
-                        @if ($pet->petInfo()[0]->breed->name)
+                        @if ($pet->petInfo()[0]->breed && $pet->petInfo()[0]->breed->name)
                             <a href="{{ url('breed/' . $pet->petInfo()[0]->breed->id) }}"> {{$pet->petInfo()[0]->breed->name}}</a>
                         @endif
                     </div>

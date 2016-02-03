@@ -11,7 +11,7 @@
 @section('content')
     @foreach ($breeds as $breed)
         <div class="breed">
-            <a href="{{ url('breed/' . $breed->id) }}"><strong>{{ $breed->name }}</strong></a> - updated at: <label>{{ date("Y/m/d H:i:s", strtotime($breed->updated_at)) }}</label>
+            <a href="{{ url('breed/' . Crypt::encrypt($breed->id)) }}"><strong>{{ $breed->name }}</strong></a> - updated at: <label>{{ date("Y/m/d H:i:s", strtotime($breed->updated_at)) }}</label>
         </div>
     @endforeach
 @stop
