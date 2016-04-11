@@ -167,4 +167,5 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{id}', 'Pet\PetController@show');
     });
     Route::get('pets', 'Pet\PetController@index');
+    Route::get('diary', 'Pet\PetController@index');
 });
