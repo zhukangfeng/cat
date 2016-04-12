@@ -102,7 +102,7 @@
 <footer class="footer center-block ">
     <div class="navbar navbar-default center-block top30">
          <nav>
-            <p><a href="mailto:shu@c-m.co.jp"> Contract to </p></a>
+            <p><a href="mailto:cathome.tk@gmail.com"> Contract to </p></a>
             <p>Copyright: Personal.&nbsp;&nbsp;<a href="/about">About</a></p>
         </nav>       
     </div>
